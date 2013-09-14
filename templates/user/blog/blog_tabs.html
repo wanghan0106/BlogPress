@@ -1,0 +1,6 @@
+<div class="tabs-div">
+    <ul class="nav nav-tabs">
+      <li {% ifequal is_blog 1 %}class="active"{% endifequal %}><a href="{% url 'user:blog' %}">博客管理</a></li>
+      <li {% ifequal is_column 1 %}class="active"{% endifequal %}><a href="{% url 'user:column' %}">分类管理</a></li>
+    </ul>
+</div>

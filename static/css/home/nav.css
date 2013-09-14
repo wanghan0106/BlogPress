@@ -1,0 +1,81 @@
+/* css for home page */
+html,
+body {
+  height: 100%;
+}
+
+.wrap {
+  min-height: 100%;
+  height: 100%;
+  /* Negative indent footer by its height */
+  margin: 0 auto -60px;
+  /* Pad bottom by footer height */
+  padding: 0 0 60px;
+}
+
+.left-column{
+    text-align: right;
+}
+
+.right-column{
+    text-align: left;
+}
+
+.footer {
+  height: 60px;
+  background-color: #f5f5f5;
+}
+
+.footer .container .credit {
+  margin: 20px 0;
+}
+
+.btn-nav {
+  background-color: #bce8f1;
+  height: 38px;
+}
+
+.nav-welcome {
+  display: block;
+  padding: 15px 15px;
+  margin-right: auto;
+  margin-left: auto;
+  line-height: 20px;
+  color: #777777;
+  text-align: center;
+}
+.nav-welcome a {
+  color: #777777;
+  line-height: 20px;
+}
+
+.nav-login-input {
+  width: 160px;
+}
+
+.fall-arrow {
+  display: inline-block;
+  width: 0;
+  height: 0;
+  margin-left: 2px;
+  vertical-align: middle;
+  border-top: 4px solid #777777;
+  border-right: 4px solid transparent;
+  border-left: 4px solid transparent;
+  content: "";
+}
+
+.profile-dropdown-menu {
+  width: 100px;
+  min-width: 100px;
+  background-color: #bce8f1;
+}
+
+.sub-menu:hover {
+  background-color: #5cb85c;
+}
+.sub-menu:active {
+  background-color: #5cb85c;
+}
+
+

@@ -1,0 +1,31 @@
+/* css for home page */
+html,
+body {
+  height: 100%;
+}
+
+.wrap {
+  min-height: 100%;
+  height: 100%;
+  /* Negative indent footer by its height */
+  margin: 0 auto -60px;
+  /* Pad bottom by footer height */
+  padding: 0 0 60px;
+}
+
+.form-group input {
+    width: 300px;
+}
+
+.form-weight {
+    width: 96%;
+}
+
+.btn-save {
+  color: #ffffff;
+  background-color: #5cb85c;
+  border-color: #5cb85c;
+  width: 100px;
+}
+
+

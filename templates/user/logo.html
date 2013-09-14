@@ -1,0 +1,13 @@
+{% load staticfiles %}
+<div class="logo-div">
+    <a href="{% url 'user:blog' %}">
+        <img class="logo" title="{{ curr_user.nickname }}的博客" src="{% url 'index' %}{{ curr_user.logo }}">
+    </a>
+</div>
+<div class="brief-div">
+    <div id="nickname">{{ curr_user.nickname }}</div>
+    <div>
+        <div id="fan-num">关注&nbsp;<span class="badge">{{ focus_num }}</span></div>
+        <div id="focus-num">粉丝&nbsp;<span class="badge">{{ fan_num }}</span></div>
+    </div>
+</div>

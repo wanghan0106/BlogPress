@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+{% include "home/head.html" %}
+{% load staticfiles %}
+<link href="{% static 'css/bootstrap.css' %}" rel="stylesheet">
+<link href="{% static 'css/common.css' %}" rel="stylesheet">
+<link href="{% static 'css/home/nav.css' %}" rel="stylesheet">
+<link href="{% static 'css/home/footer.css' %}" rel="stylesheet">
+<link href="{% static 'css/user/profile.css' %}" rel="stylesheet">
+<script src="{% static 'js/jquery.js' %}"></script>
+<script src="{% static 'js/bootstrap.js' %}"></script>
+<body>
+<div class="wrap">
+    {% include "home/nav.html" %}
+    <div class="container">
+        <div class="profile-left">
+            <div class="profile-container-box profile-brief">
+                {% include "user/logo.html" %}
+            </div>
+            <div class="profile-container-box profile-menu">
+                {% include "user/menu.html" %}
+            </div>
+        </div>
+        <div class="profile-right profile-container-box">
+            {% include "user/profile/profile_tabs.html" %}
+            <form id="form" class="form-horizontal form-weight" action="{% url 'user:profile/save' %}" method="post">
+            {% csrf_token %}
+            <div class="row">
+                <div class="control-label col-lg-2 profile-title">昵称</div>
+                <div class="col-lg-10 read-input">{{ curr_user.nickname }}</div>
+            </div>
+            <div class="row">
+                <div class="control-label col-lg-2 profile-title">加入时间</div>
+                <div class="col-lg-10 read-input">{{ curr_user.registerTime|date:"Y-m-d H:i:s" }}</div>
+            </div>
+            <div class="row">
+                <div class="control-label col-lg-2 profile-title">最近上线时间</div>
+                <div class="col-lg-10 read-input">{{ curr_user.lastLoginTime|date:"Y-m-d H:i:s" }}</div>
+            </div>
+            <div class="row">
+                <div class="control-label col-lg-2 profile-title">文章数</div>
+                <div class="col-lg-10 read-input">{{ curr_user.blognum }}</div>
+            </div>
+            <div class="row">
+                <div class="control-label col-lg-2 profile-title">评论数</div>
+                <div class="col-lg-10 read-input">{{ curr_user.commentnum }}</div>
+            </div>
+            <div class="form-group">
+                <div class="control-label col-lg-2 profile-title">自我介绍</div>
+                <div class="col-lg-10 read-input">
+                    <textarea name="desc" id="desc" class="form-control">{{ curr_user.desc }}</textarea>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="control-label col-lg-2 profile-title">兴趣爱好</div>
+                <div class="col-lg-10 read-input">
+                    <textarea name="favorite" id="favorite" class="form-control">{{ curr_user.favorite }}</textarea>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-offset-2 col-lg-10">
+                    <button type="submit" class="btn btn-save">保存</button>
+                </div>
+            </div>
+            </form>
+        </div>
+
+    </div>
+</div>
+</div>
+{% include "home/footer.html" %}
+</body>
+</html>

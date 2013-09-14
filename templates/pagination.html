@@ -1,0 +1,16 @@
+{% if total_page > 1 %}
+<div class="pager-div">
+      <ul class="pagination">
+          <li><a href="javascript:void(0)" onclick="page(1)">«</a></li>
+          {% for p in pages %}
+          {% if p == page %}
+          <li class="active"><span>{{ p }} <span class="sr-only"></span></span></li>
+          {% endif %}
+          {% if p != page %}
+          <li><a href="javascript:void(0)" onclick="page({{ p }})">{{ p }}</a></li>
+          {% endif %}
+          {% endfor %}
+          <li><a href="javascript:void(0)" onclick="page({{ total_page }})">»</a></li>
+    </ul>
+</div>
+{% endif %}

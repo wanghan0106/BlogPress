@@ -1,0 +1,7 @@
+<div class="tabs-div">
+    <ul class="nav nav-tabs">
+      <li {% ifequal is_profile 1 %}class="active"{% endifequal %}><a href="{% url 'user:profile' %}">个人资料</a></li>
+      <li {% ifequal is_logo 1 %}class="active"{% endifequal %}><a href="{% url 'user:logo' %}">我的头像</a></li>
+      <li {% ifequal is_password 1 %}class="active"{% endifequal %}><a href="{% url 'user:password' %}">修改密码</a></li>
+    </ul>
+</div>

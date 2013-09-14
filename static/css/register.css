@@ -1,0 +1,17 @@
+.wrap > .container {
+  padding: 60px 15px 0;
+}
+
+.form-group input {
+    width: 300px;
+}
+
+.error-span {
+  color: #FF0000;
+  font-size: 11pt;
+}
+
+#error-div {
+  display: none;
+}
+

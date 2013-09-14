@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+{% include "home/head.html" %}
+{% load staticfiles %}
+<link href="{% static 'css/bootstrap.css' %}" rel="stylesheet">
+<link href="{% static 'css/bootstrap/pagination.css' %}" rel="stylesheet">
+<link href="{% static 'css/bootstrap/glyphicon.css' %}" rel="stylesheet">
+<link href="{% static 'css/common.css' %}" rel="stylesheet">
+<link href="{% static 'css/home/nav.css' %}" rel="stylesheet">
+<link href="{% static 'css/home/footer.css' %}" rel="stylesheet">
+<link href="{% static 'css/user/profile.css' %}" rel="stylesheet">
+<script src="{% static 'js/jquery.js' %}"></script>
+<script src="{% static 'js/bootstrap.js' %}"></script>
+<script>
+$(function(){
+    $('#btn-create-column').bind('click',function(){
+        document.location.href='{% url 'user:column/add' %}';
+    });
+});
+function page(pg) {
+    document.location.href = "{% url 'user:column' %}?page=" + pg;
+}
+</script>
+<body>
+<div class="wrap">
+    {% include "home/nav.html" %}
+    <div class="container">
+        <div class="profile-left">
+            <div class="profile-container-box profile-brief">
+                {% include "user/logo.html" %}
+            </div>
+            <div class="profile-container-box profile-menu">
+                {% include "user/menu.html" %}
+            </div>
+        </div>
+        <div class="profile-right profile-container-box">
+            {% include "user/blog/blog_tabs.html" %}
+            <div class="container">
+                <div id="create-blog-div" class="col-offset-10 col-lg-2">
+                    <button id="btn-create-column" type="button" class="btn btn-save">创建分类</button>
+                </div>
+                <div class="list-div container">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th style="width: 20%">分类</th>
+                                <th style="width: 10%">文章数</th>
+                                <th style="width: 70%">管理</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for column in list %}
+                            <tr>
+                                <td>{{ column.name }}</td>
+                                <td>{{ column.articlenum }}</td>
+                                <td>
+                                    <a href="{% url 'user:column/edit' column.id %}"><img style="height: 24px;" src="{% static 'image/icons/edit.png' %}" title="编辑"></a>
+                                    {% if column.articlenum == 0 %}
+                                    <a href="{% url 'user:column/del' column.id %}"><img style="height: 24px;" src="{% static 'image/icons/trash.png' %}" title="删除"></a>
+                                    {% endif %}
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% include "pagination.html" %}
+            </div>
+        </div>
+
+    </div>
+</div>
+</div>
+{% include "home/footer.html" %}
+</body>
+</html>

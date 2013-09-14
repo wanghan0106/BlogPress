@@ -1,0 +1,5 @@
+<div class="list-group">
+    <a href="{% url 'user:profile' %}" class="list-group-item {% ifequal profile_menu 1 %}active{% endifequal %}">个人资料</a>
+    <a href="{% url 'user:blog' %}" class="list-group-item {% ifequal blog_menu 1 %}active{% endifequal %}">我的博客</a>
+    <a href="{% url 'user:focus' %}" class="list-group-item {% ifequal focus_menu 1 %}active{% endifequal %}">我的关注</a>
+</div>

@@ -1,0 +1,62 @@
+<script>
+    $(function(){
+        {% if not curr_user %}
+        $('#signin').click(function(){
+            document.location.href='{% url 'home:signin' %}';
+        });
+        $('#register').click(function(){
+            document.location.href='{% url 'register' %}';
+        });
+        {% endif %}
+        {% if curr_user %}
+        $('#logout').click(function(){
+            document.location.href='{% url 'home:logout' %}';
+        });
+        {% endif %}
+    });
+</script>
+<div class="navbar navbar-static-top">
+    <div class="container">
+        <a class="navbar-brand" href="{% url 'index' %}">BlogPress</a>
+        <div class="nav-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li class="active">
+                    <a href="{% url 'index' %}">首页</a>
+                </li>
+                <li>
+                    <a href="#">新闻</a>
+                </li>
+                <li>
+                    <a href="#">博客</a>
+                </li>
+                {% if curr_user %}
+                <li>
+                    <a href="#">圈子</a>
+                </li>
+                {% endif %}
+                <li>
+                    <a href="#">关于我们</a>
+                </li>
+            </ul>
+            <from id="loginForm" class="navbar-form form-inline pull-right">
+            {% if curr_user %}
+                <div class="btn-group">
+                <button  class="btn btn-nav dropdown-toggle" id="profile" data-toggle="dropdown">
+                    {{ curr_user.nickname }}&nbsp;<span class="fall-arrow"></span>
+                </button>
+                <ul class="dropdown-menu profile-dropdown-menu" style="width: 60px;">
+                    <li><a class="sub-menu" href="{% url 'user:profile' %}">个人资料</a></li>
+                    <li><a class="sub-menu" href="{% url 'user:blog' %}">我的博客</a></li>
+                    <li><a class="sub-menu" href="{% url 'user:focus' %}">我的关注</a></li>
+                </ul>
+                </div>
+                <input class="btn btn-nav" id="logout" type="button" value="退出"/>
+            {% endif %}
+            {% if not curr_user %}
+                <input class="btn btn-nav" id="signin" type="button" value="登录"/>&nbsp;&nbsp;
+                <input class="btn btn-nav" id="register" type="button" value="注册"/>
+            {% endif %}
+            </from>
+        </div>
+    </div>
+</div>

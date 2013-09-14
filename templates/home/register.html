@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="BlogPress">
+    <meta name="author" content="roy">
+    <title>BlogPress</title>
+</head>
+{% load staticfiles %}
+<link href="{% static 'css/bootstrap.css' %}" rel="stylesheet">
+<link href="{% static 'css/common.css' %}" rel="stylesheet">
+<link href="{% static 'css/register.css' %}" rel="stylesheet">
+<link href="{% static 'css/home/footer.css' %}" rel="stylesheet">
+<script src="{% static 'js/jquery.js' %}"></script>
+<script src="{% static 'js/md5.js' %}"></script>
+<script src="{% static 'js/bootstrap.js' %}"></script>
+<script>
+$(function(){
+    $('#form').bind('submit',function(){
+        var errornum = $('.has-error',this).length;
+        if(errornum>0) {
+            return false;
+        }
+        $('#password').val(hex_md5($('#password').val()).toUpperCase());
+    });
+    $('#username').bind('blur',function(){
+        var input = this;
+        if($(input).val().length==0) {
+            $(input).parent().parent().removeClass('has-error');
+            $('.error-span',$(input).parent()).html('');
+        }
+        $.ajax({
+           type: "GET",
+           url: "{% url 'index' %}home/check/"+$(this).val(),
+           success: function(msg){
+              if(msg > 0) {
+                 $(input).parent().parent().addClass('has-error');
+                 $('#error-span').html('此用户名已经存在！');
+                 $('#error-div').show();
+              } else {
+                 $(input).parent().parent().removeClass('has-error');
+                 $('#error-span').html('');
+                 $('#error-div').hide();
+              }
+           }
+        });
+    });
+});
+</script>
+<body>
+<div class="wrap">
+    <div class="navbar navbar-static-top">
+        <div class="container">
+            <a class="navbar-brand" href="{% url 'index' %}">BlogPress</a>
+        </div>
+    </div>
+    <form id="form" class="form-horizontal form-weight" action="{% url 'home:save' %}" method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            <div class="col-offset-1 col-lg-11">
+                <label class="control-label"><h3>注册</h3></label>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-offset-1 col-lg-11">
+                <div id="error-div" class="alert alert-danger">
+                    <span id="error-span"></span>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-lg-2" for="username">用户名</label>
+            <div class="col-lg-10">
+                <input type="text" required="true" class="form-control" name="username" id="username" placeholder="请输入您的用户名">
+                <span class="error-span"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-lg-2" for="nickname">昵称</label>
+            <div class="col-lg-10">
+                <input type="text" required="true" class="form-control" name="nickname" id="nickname" placeholder="请输入您的昵称">
+                <span class="error-span"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-lg-2" for="password">密码</label>
+            <div class="col-lg-10">
+                <input type="password" required="true" class="form-control" name="password" id="password" placeholder="请输入登录密码">
+                <span class="error-span"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-offset-2 col-lg-10">
+            <button type="submit" class="btn btn-save">保存</button>
+        </div>
+      </div>
+    </form>
+</div>
+
+
+{% include "home/footer.html" %}
+</body>
+</html>

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+{% include "home/head.html" %}
+{% load staticfiles %}
+<link href="{% static 'css/bootstrap.css' %}" rel="stylesheet">
+<link href="{% static 'css/common.css' %}" rel="stylesheet">
+<link href="{% static 'css/home.css' %}" rel="stylesheet">
+<link href="{% static 'css/home/nav.css' %}" rel="stylesheet">
+<link href="{% static 'css/home/footer.css' %}" rel="stylesheet">
+<script src="{% static 'js/jquery.js' %}"></script>
+<script src="{% static 'js/bootstrap.js' %}"></script>
+<body>
+<div class="wrap">
+    {% include "home/nav.html" %}
+</div>
+{% include "home/footer.html" %}
+</body>
+</html>
